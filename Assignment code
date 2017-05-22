@@ -1,0 +1,50 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class MyClass {
+
+	public static void main(String s[]){
+		
+		System.out.println("Hello");//Opening text	
+		TimerTask timerTask = new timer();
+        //running timer task as daemon thread
+        Timer timer = new Timer(true);
+        timer.scheduleAtFixedRate(timerTask, 0, 1);
+        System.out.println("TimerTask started");
+        //cancel after sometime
+        try {
+            Thread.sleep(120000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        timer.cancel();
+        System.out.println("TimerTask cancelled");
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    
+		
+	}
+}
+
+class timer extends TimerTask{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		completeTask();
+		System.out.println("2 seconds just passed");
+	}
+
+	private void completeTask() {
+        try {
+            //assuming it takes 2 seconds to complete the task
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+	
+}
